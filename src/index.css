@@ -1,0 +1,246 @@
+:root {
+  --tg-bg: #0f1419;
+  --tg-text: #e7ecf3;
+  --tg-hint: #8b95a5;
+  --tg-accent: #2aabee;
+  --tg-accent-soft: rgba(42, 171, 238, 0.15);
+  --tg-surface: #1a222d;
+  --tg-border: rgba(255, 255, 255, 0.08);
+  --tg-ok: #3dd68c;
+  --tg-warn: #f5a524;
+  --tg-fail: #ff6b6b;
+  --radius: 14px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  line-height: 1.45;
+  color: var(--tg-text);
+  background: var(--tg-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--tg-bg);
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px 16px calc(24px + var(--safe-bottom));
+}
+
+.app__header {
+  margin-bottom: 20px;
+}
+
+.app__badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--tg-accent-soft);
+  color: var(--tg-accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.app__title {
+  margin: 10px 0 6px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.app__subtitle {
+  margin: 0;
+  color: var(--tg-hint);
+  font-size: 14px;
+}
+
+.app__main {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card {
+  background: var(--tg-surface);
+  border: 1px solid var(--tg-border);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+.card__title {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field--wide {
+  grid-column: 1 / -1;
+}
+
+.field__label {
+  font-size: 12px;
+  color: var(--tg-hint);
+}
+
+.field__input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--tg-border);
+  background: var(--tg-bg);
+  color: var(--tg-text);
+  font-size: 15px;
+  outline: none;
+}
+
+.field__input:focus {
+  border-color: var(--tg-accent);
+  box-shadow: 0 0 0 3px var(--tg-accent-soft);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--tg-accent);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.result {
+  border-radius: var(--radius);
+  border: 1px solid var(--tg-border);
+  overflow: hidden;
+  background: var(--tg-surface);
+}
+
+.result--ok {
+  border-color: rgba(61, 214, 140, 0.35);
+}
+
+.result--warning {
+  border-color: rgba(245, 165, 36, 0.35);
+}
+
+.result--fail {
+  border-color: rgba(255, 107, 107, 0.35);
+}
+
+.result__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--tg-border);
+}
+
+.result__status {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.result--ok .result__status {
+  color: var(--tg-ok);
+}
+
+.result--warning .result__status {
+  color: var(--tg-warn);
+}
+
+.result--fail .result__status {
+  color: var(--tg-fail);
+}
+
+.result__count {
+  font-size: 12px;
+  color: var(--tg-hint);
+}
+
+.result__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.result__item {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--tg-border);
+}
+
+.result__item:last-child {
+  border-bottom: none;
+}
+
+.result__item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.result__item-label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.result__item-badge {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.8;
+}
+
+.result__item--ok .result__item-badge {
+  color: var(--tg-ok);
+}
+
+.result__item--warning .result__item-badge {
+  color: var(--tg-warn);
+}
+
+.result__item--fail .result__item-badge {
+  color: var(--tg-fail);
+}
+
+.result__item-message {
+  margin: 0;
+  font-size: 13px;
+  color: var(--tg-hint);
+}
