@@ -1,7 +1,9 @@
 import { useMemo, useState } from "react";
 import { AppShell } from "../components/Layout/AppShell";
 import { FitResult } from "../components/wheel/FitResult";
+import { PositionSummary } from "../components/wheel/PositionSummary";
 import { WheelForm } from "../components/wheel/WheelForm";
+import { WheelVisualization } from "../components/wheel/WheelVisualization";
 import { useTelegram } from "../hooks/useTelegram";
 import {
   checkWheelFit,
@@ -32,6 +34,9 @@ export function HomePage() {
     >
       <WheelForm title="Штатные колёса" specs={stock} onChange={setStock} />
       <WheelForm title="Новые диски" specs={candidate} onChange={setCandidate} />
+
+      <PositionSummary stock={stock} candidate={candidate} />
+      <WheelVisualization stock={stock} candidate={candidate} />
 
       <button type="button" className="btn-primary" onClick={handleCheck}>
         Проверить совместимость

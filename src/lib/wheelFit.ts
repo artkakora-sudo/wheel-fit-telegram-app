@@ -1,3 +1,4 @@
+import { calculateWheelPositionDelta, formatDeltaMm } from "./wheelGeometry";
 import type { FitCheckItem, FitResult, WheelSpecs } from "../types";
 
 function worstStatus(items: FitCheckItem[]): FitResult["status"] {
@@ -119,6 +120,31 @@ export function checkWheelFit(stock: WheelSpecs, candidate: WheelSpecs): FitResu
       label: "Центральное отверстие",
       status: "ok",
       message: `${candidate.centerBore} мм подходит под ступицу`,
+    });
+  }
+
+  const position = calculateWheelPositionDelta(stock, candidate);
+  const poke = position.outerEdgeLateralMm;
+  if (Math.abs(poke) > 15) {
+    items.push({
+      id: "outer-edge",
+      label: "Наружная кромка",
+      status: "fail",
+      message: formatDeltaMm(poke, "Вынесена наружу", "Утоплена внутрь"),
+    });
+  } else if (Math.abs(poke) > 8) {
+    items.push({
+      id: "outer-edge",
+      label: "Наружная кромка",
+      status: "warning",
+      message: `${formatDeltaMm(poke, "Вынесена наружу", "Утоплена внутрь")} — проверьте зазор до арки`,
+    });
+  } else if (Math.abs(poke) >= 0.5) {
+    items.push({
+      id: "outer-edge",
+      label: "Наружная кромка",
+      status: "ok",
+      message: formatDeltaMm(poke, "Вынесена наружу", "Утоплена внутрь"),
     });
   }
 
